@@ -1,4 +1,4 @@
-# Data 25 Star Wars Project
+# Data 29 Star Wars Project
 
 ## Instructions
 
@@ -9,7 +9,7 @@ The "pilots" key contains URLs pointing to the characters who pilot the starship
 Use these to replace 'pilots' with a list of ObjectIDs from our characters collection, then insert the starships into their own collection in MongoDB.
 (Make sure you drop any existing starships collections.)
 
-You have until after Christmas.
+You have until Friday EOD.
 
 ## Requirements
 
@@ -18,6 +18,8 @@ You have until after Christmas.
 - Create a job board in Trello or similar to keep track of your user stories.  Provide a link to that job board in your version of this README.
 - Your code should utilise functional programming OR object-oriented programming
 - Use Test Driven Development: write your tests first
+- Good use of Git and GitHub. Commit and push often with meaningful commit messages.
+- Include an appropriate version of this README
 
 ## Using this repo
 
