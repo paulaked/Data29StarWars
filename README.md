@@ -1,30 +1,9 @@
-# Data 29 Star Wars Project
+# Tobi Salami's Star Wars Project
 
-## Instructions
+## Aim
 
-The character data in your MongoDB database has been pulled from https://swapi.tech/.
-As well as 'people', the API has data on starships.
-Using Python, write code to pull data on all available starships from the API.
-The "pilots" key contains URLs pointing to the characters who pilot the starship.
-Use these to replace 'pilots' with a list of ObjectIDs from our characters collection, then insert the starships into their own collection in MongoDB.
-(Make sure you drop any existing starships collections.)
+The aim of this project is to be able to pull Starship data from the Star Wars API (https://swapi.tech/) and import this data into a MongoDB database. This is done through the use of functional/ object oriented	programming alongside Test Driven Development (TDD). For further information of aims and user stories go to:
+https://trello.com/starwarsproject12
 
-You have until Friday EOD.
 
-## Requirements
 
-- Use good coding principles.  That means testing, appropriate comments, good naming conventions and handling errors gracefully.
-- Follow PEP 8
-- Create a job board in Trello or similar to keep track of your user stories.  Provide a link to that job board in your version of this README.
-- Your code should utilise functional programming OR object-oriented programming
-- Use Test Driven Development: write your tests first
-- Good use of Git and GitHub. Commit and push often with meaningful commit messages.
-- Include an appropriate version of this README
-
-## Using this repo
-
-- Branch off from main.
-- Use your own name for the name of the branch (e.g. mine would be PaulaKedra - please copy this format).
-- Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
-- The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
-- Replace this README with an appropriate README for your project (including a link to your job board).
