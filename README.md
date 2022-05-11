@@ -21,10 +21,5 @@ You have until Friday EOD.
 - Good use of Git and GitHub. Commit and push often with meaningful commit messages.
 - Include an appropriate version of this README
 
-## Using this repo
-
-- Branch off from main.
-- Use your own name for the name of the branch (e.g. mine would be PaulaKedra - please copy this format).
-- Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
-- The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
-- Replace this README with an appropriate README for your project (including a link to your job board).
+## My Job Board 
+https://trello.com/b/8JaVhobU/star-wars
