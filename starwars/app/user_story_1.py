@@ -1,6 +1,4 @@
-import starwars.config_manager as conf
 import requests
-import json
 
 
 def get_starship_data():
