@@ -37,6 +37,7 @@ class Starships:
     def get_url(self,url):
         return json.loads(requests.get(url).content)
 
+
     def get_ship_info(self):
         ships = []
         for ship in self.starships:
@@ -44,14 +45,26 @@ class Starships:
         for ship in ships:
             self.ship_info.append(ship["result"]["properties"])
 
+    def empty_pilots(self,ship):
+        ship["pilots"] = None
+        return ship
+
+    def pilots_exist(self,ship):
+        pilots = []
+        for url in ship["pilots"]:
+            pilots.append(self.get_url(url)["result"]["properties"]["name"])
+        ship.update({"pilots": pilots})
+        return (ship)
+
     def get_pilot_info(self):
         for ship in self.ship_info:
             if ship["pilots"] == []:
-                self.ship_info["pilots"] = None
+                self.empty_pilots(ship)
             else:
-                pilots =[]
-                for url in ship["pilots"]:
-                    pilots.append(self.get_url(url)["result"]["properties"]["name"])
+                self.pilots_exist(ship)
+        return(self.ship_info)
+
+
 
 
 
