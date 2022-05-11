@@ -1,30 +1,16 @@
 # Data 29 Star Wars Project
 
+
 ## Instructions
+This repo will return a collection of starships including the pilot name(s), if any.
 
-The character data in your MongoDB database has been pulled from https://swapi.tech/.
-As well as 'people', the API has data on starships.
-Using Python, write code to pull data on all available starships from the API.
-The "pilots" key contains URLs pointing to the characters who pilot the starship.
-Use these to replace 'pilots' with a list of ObjectIDs from our characters collection, then insert the starships into their own collection in MongoDB.
-(Make sure you drop any existing starships collections.)
-
-You have until Friday EOD.
-
-## Requirements
-
-- Use good coding principles.  That means testing, appropriate comments, good naming conventions and handling errors gracefully.
-- Follow PEP 8
-- Create a job board in Trello or similar to keep track of your user stories.  Provide a link to that job board in your version of this README.
-- Your code should utilise functional programming OR object-oriented programming
-- Use Test Driven Development: write your tests first
-- Good use of Git and GitHub. Commit and push often with meaningful commit messages.
-- Include an appropriate version of this README
 
 ## Using this repo
+Use the __main__.py file to run the program as it will contain only the relevant function/class calls.
 
-- Branch off from main.
-- Use your own name for the name of the branch (e.g. mine would be PaulaKedra - please copy this format).
-- Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
-- The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
-- Replace this README with an appropriate README for your project (including a link to your job board).
+The app folder will contain all application code required for the function/class calls.
+The tests folder will contain unit test files used for the files in the app folder.
+
+
+## Task board
+https://guttural-waste-40d.notion.site/Star-wars-project-task-56f034f986104eb68443b0721f55ba53
