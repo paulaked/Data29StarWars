@@ -1,21 +1,8 @@
 # Data 29 Star Wars Project
 
-##Project Aim
+##Aims and Objectives
 
-To extract data of starships replace urls with the characters Object ID 
-
-##Tasks
-
-- Create a function that extracts data from API
-- make starships its own collection on mongodb
-
-## Currently Doing
-- creating unittest.py and extracting data 
-
-## Completed
-
-- Pushed repository onto Github 
-
+ To extract Starship data from the Star Wars API and import this data into the MongoDB database.
 
 ## Instructions
 
@@ -45,3 +32,8 @@ You have until Friday EOD.
 - Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
 - The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
 - Replace this README with an appropriate README for your project (including a link to your job board).
+
+
+## Task board
+
+https://trello.com/b/zoLm6EzJ/fahimul-star-wars-prj 
