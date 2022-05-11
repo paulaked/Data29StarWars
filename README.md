@@ -1,5 +1,22 @@
 # Data 29 Star Wars Project
 
+##Project Aim
+
+To extract data of starships replace urls with the characters Object ID 
+
+##Tasks
+
+- Create a function that extracts data from API
+- make starships its own collection on mongodb
+
+## Currently Doing
+- creating unittest.py and extracting data 
+
+## Completed
+
+- Pushed repository onto Github 
+
+
 ## Instructions
 
 The character data in your MongoDB database has been pulled from https://swapi.tech/.
