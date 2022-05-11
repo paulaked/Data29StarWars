@@ -36,7 +36,7 @@ class Starships:
         return self.starships
 
     # Method to retrieve any content from a given URL in json
-    def get_url(self,url):
+    def get_url(self, url):
         return json.loads(requests.get(url).content)
 
     # Method to retrieve information for each ship from their URLS
@@ -49,31 +49,24 @@ class Starships:
         return self.ship_info
 
     # Sets pilot names to None
-    def empty_pilots(self,ship):
+    def empty_pilots(self, ship):
         ship["pilots"] = None
         return ship
 
     # Sets pilot names to names given in each URL
-    def pilots_exist(self,ship):
+    def pilots_exist(self, ship):
         pilots = []
         for url in ship["pilots"]:
             pilots.append(self.get_url(url)["result"]["properties"]["name"])
         ship.update({"pilots": pilots})
         print("Starship " + ship["name"] + " has pilots: " + ship["pilots"])
-        return (ship)
+        return ship
 
     # Method to set pilot names accordingly
     def get_pilot_info(self):
         for ship in self.ship_info:
-            if ship["pilots"] == []:
+            if not ship["pilots"]:
                 self.empty_pilots(ship)
             else:
                 self.pilots_exist(ship)
-        return(self.ship_info)
-
-
-
-
-
-
-
+        return self.ship_info
