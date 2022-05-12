@@ -28,3 +28,7 @@ You have until Friday EOD.
 - Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
 - The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
 - Replace this README with an appropriate README for your project (including a link to your job board).
+
+
+## NOTES FROM SHIBA
+- [Link to Trello board](https://trello.com/b/jh2mMGWO/star-wars-project)
