@@ -1,7 +1,7 @@
 # Data 29 Star Wars Project
 
 
-## Instructions
+## Aim
 This repo will return a collection of starships including the pilot name(s), if any.
 
 

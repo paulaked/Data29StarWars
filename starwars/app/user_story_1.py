@@ -1,27 +1,32 @@
 import requests
-import starwars.config_manager as conf
+from requests import Response
+import pymongo
+
+# get starships data
+# - make request for starships/x where x is each starship
+# - need to make sure it can handle the fact that not all x have a starship
+# - input - none
+# - output - dict
 
 
-def get_starship_data() -> list:
-    return requests.get("https://swapi.tech/api/starships").json()["results"]
+def get_starships_data() -> dict:
+    pass
 
-starships_list = get_starship_data()
 
-# def get_starships_urls(list) -> list:
-#     url_list = []
-#     for starship in list:
-#         url_list.append(starship["url"])
-#     return url_list
-#
-# url_list = get_starships_urls(starships_list)
-#
-# def get_pilot_data(list) -> list:
-#     pilot_data = []
-#     for starship in list:
-#         pilot_data.append({"ship_name": requests.get(starship).json()["result"]["properties"]["model"],
-#                            "pilot_urls": requests.get(starship).json()["result"]["properties"]["pilots"]
-#                         })
-#     return pilot_data
-#
-# pilot_data = get_pilot_data(url_list)
-# print(pilot_data)
+# check data is ready for insert
+# - check certain keys exists
+
+
+def data_ready(data):
+    pass
+
+
+# put data into a collection
+# - create collection
+# - use insert_many
+# - input - dict
+# - output - collection
+
+
+def insert_starships(data):
+    pass
