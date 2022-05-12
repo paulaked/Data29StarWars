@@ -5,10 +5,7 @@ import pymongo
 client = pymongo.MongoClient()
 db = client["starwars"]
 
-# get starships data
-# - make request for starships
-# - input - none
-# - output - dict
+# get starships data and put into a collection
 
 
 class StarshipsData:
@@ -20,11 +17,14 @@ class StarshipsData:
 
     def get_raw_starship_data(self):
         try:
-            raw_data = requests.get("https://swapi.tech/api/starships").json()["results"]
-            self.data = raw_data
+            # https://www.swapi.tech/api/starships?page=1&limit=10
+            # https://swapi.tech/api/starships
+            for i in list(range(1,5)):
+                for item in requests.get(f"https://www.swapi.tech/api/starships?page={i}&limit=10").json()["results"]:
+                    self.data.append(item)
+            return self.data
         except:
             print("an error happened")
-        return self.data
 
     def starships_url_list(self):
         for starship in self.data:
@@ -38,15 +38,15 @@ class StarshipsData:
         self.starships_data = placeholder_list
         return self.starships_data
 
-    def get(self):
+    def create_collection(self):
         self.get_raw_starship_data()
         self.starships_url_list()
         self.get_starships_data()
-
-    def insert_to_new_collection(self):
         db.create_collection("starships")
         db.starships.insert_many(self.starships_data)
 
-# some_data = StarshipsData()
-# some_data.get()
-# some_data.insert_to_collection()
+
+some_data = StarshipsData()
+some_data.create_collection()
+
+# print(requests.get(f"https://www.swapi.tech/api/starships?page=2&limit=10").json()["results"])

@@ -3,8 +3,9 @@ from app.user_story_1 import StarshipsData
 
 if __name__ == '__main__':
     starships = StarshipsData()
-    starships.get()
-    starships.insert_to_new_collection()
+    starships.create_collection()
+    # we have now created a collection containing starship data
+
 
 
 

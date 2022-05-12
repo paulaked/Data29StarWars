@@ -2,9 +2,6 @@ import requests
 import json
 import pymongo
 
-client = pymongo.MongoClient()
-db = client["starwars"]
-
 # i need to replace pilot urls with character object ids
 # i need a link between pilot urls and character object ids
 # - i can query pilot url for character name and link with character name in document
@@ -17,22 +14,26 @@ db = client["starwars"]
 # - match with name on characters collection
 # - (child) replace url with character object id
 
-class CreateCollection():
+
+class ReplacePilots():
+
+    client = pymongo.MongoClient()
+    db = client["starwars"]
 
     def __init__(self):
-        super().__init__()
-
+        self.pilot_url_list = []
 
     # child - get pilot list, (pilot list might be empty)
     # - input is document from the starships collection
     # - output will be the pilot url list (if exists)
 
     def get_pilot_url_list(self):
-        placeholder_list = []
-        for starship in super().get():
-            placeholder_list.append(starship["properties"]["pilots"])
-        self.pilot_url_list = placeholder_list
+        self.pilot_url_list = db.starships.find()
         return self.pilot_url_list
+
+
+attempt = ReplacePilots()
+print(attempt.pilot_url_list)
 
 
 # print(the_collection.get())
