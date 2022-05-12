@@ -1,16 +1,19 @@
+import requests
+import json
+import pymongo
+
 # i need to replace pilot urls with character object ids
 # i need a link between pilot urls and character object ids
 # - i can query pilot url for character name and link with character name in document
 
 # parent - for each starship in the collection
 # overarching def, will hold child def(s) inside
-# - (child) for each starship
-# - get pilot url
 # - (child) for each pilot url
 # - query the url for person
 # - (child) for each person name
 # - match with name on characters collection
 # - (child) replace url with character object id
+
 
 
 # child - get pilot list, (pilot list might be empty)
