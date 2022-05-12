@@ -1,7 +1,10 @@
 import starwars.app.requesting_sw as rq
 import json
 import requests
+import pymongo
 
+client = pymongo.MongoClient()
+db= client['starwars']
 
 class Starships:
 
@@ -32,7 +35,7 @@ class Starships:
         except:
             raise
         finally:
-            print("Starships method executed")
+            print("Get starships method executed")
         return self.starships
 
     # Method to retrieve any content from a given URL in json
@@ -59,7 +62,7 @@ class Starships:
         for url in ship["pilots"]:
             pilots.append(self.get_url(url)["result"]["properties"]["name"])
         ship.update({"pilots": pilots})
-        print("Starship " + ship["name"] + " has pilots: " , ship["pilots"])
+        print("Starship: " + ship["name"] + " has pilots: ", ship["pilots"])
         return ship
 
     # Method to set pilot names accordingly
@@ -70,3 +73,30 @@ class Starships:
             else:
                 self.pilots_exist(ship)
         return self.ship_info
+
+    def create_collection(self):
+        if 'starships' in db.list_collection_names():
+            print("starships: This colection already exists.")
+            return
+        else:
+            print ("starships: Colection has been added.")
+            return(db.create_collection('starships'))
+
+
+    def add_starships_docs(self):
+        for ship in self.ship_info:
+            db.starships.insert_one(ship)
+            print(ship['name'],": added to collection")
+        return
+
+    def id_replace(self):
+        for ship in self.ship_info:
+            if ship['pilots'] != None:
+                id_list = []
+                for name in ship['pilots']:
+                    ob = db.characters.find({'name':name},{'_id':1})
+                    for id in ob:
+                        id_list.append(id)
+                db.starships.update_one({'pilots': ship['pilots']}, {'$set': {'pilots': id_list}})
+                print(ship['pilots'],': has been replaced with: ', id_list)
+
