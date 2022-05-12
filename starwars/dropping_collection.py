@@ -2,6 +2,8 @@ import pymongo
 import requests
 import json
 
+
+#connecting and using starwars database on Mongodb:
 client = pymongo.MongoClient()
 db = client["starwars"]
 
