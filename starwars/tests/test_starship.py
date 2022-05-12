@@ -51,9 +51,12 @@ class MyTestCase(unittest.TestCase):
                            'https://www.swapi.tech/api/people/25', 'https://www.swapi.tech/api/people/31'],
                 'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
                 'name': 'Millennium Falcon', 'url': 'https://www.swapi.tech/api/starships/10'}
+        initial_len = len(ship["pilots"])
         self.starships.pilots_exist(ship)
         self.assertIsNotNone(ship["pilots"], "Values cannot be none")
         self.assertIs(type(ship["pilots"]), list, "Must be a list")
+        self.assertEqual(initial_len, len(ship["pilots"]), "Initial length of list,"
+                                                           " doesn't match current list length")
 
 
 if __name__ == '__main__':
