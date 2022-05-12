@@ -1,11 +1,14 @@
 import requests
 import json
+import pymongo
+
+client = pymongo.MongoClient()
+db = client["starwars"]
 
 # get starships data
 # - make request for starships
 # - input - none
-# - outpu
-# t - dict
+# - output - dict
 
 
 class StarshipsData:
@@ -39,33 +42,11 @@ class StarshipsData:
         self.get_raw_starship_data()
         self.starships_url_list()
         self.get_starships_data()
-        return print(self.starships_data)
 
-some_data = StarshipsData()
+    def insert_to_new_collection(self):
+        db.create_collection("starships")
+        db.starships.insert_many(self.starships_data)
 
-# data.get_raw_starship_data()
-# data.starships_url_list()
-# data.get_starships_data()
-
-# print(data.data)
-# print(data.url_list)
-# print(data.starships_data)
-some_data.get()
-
-# check data is ready for insert
-# - check certain keys exists
-
-
-def data_ready(data):
-    pass
-
-
-# put data into a collection
-# - create collection
-# - use insert_many
-# - input - dict
-# - output - collection
-
-
-def insert_starships(data):
-    pass
+# some_data = StarshipsData()
+# some_data.get()
+# some_data.insert_to_collection()
