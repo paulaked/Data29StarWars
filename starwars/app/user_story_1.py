@@ -17,8 +17,6 @@ class StarshipsData:
 
     def get_raw_starship_data(self):
         try:
-            # https://www.swapi.tech/api/starships?page=1&limit=10
-            # https://swapi.tech/api/starships
             for i in list(range(1,5)):
                 for item in requests.get(f"https://www.swapi.tech/api/starships?page={i}&limit=10").json()["results"]:
                     self.data.append(item)
@@ -46,7 +44,5 @@ class StarshipsData:
         db.starships.insert_many(self.starships_data)
 
 
-some_data = StarshipsData()
-some_data.create_collection()
-
-# print(requests.get(f"https://www.swapi.tech/api/starships?page=2&limit=10").json()["results"])
+# some_data = StarshipsData()
+# some_data.create_collection()

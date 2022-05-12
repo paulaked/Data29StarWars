@@ -14,26 +14,39 @@ import pymongo
 # - match with name on characters collection
 # - (child) replace url with character object id
 
+client = pymongo.MongoClient()
+db = client["starwars"]
+
+# pilot_urls = db.starships.find({}, {"_id":0, "properties.pilots":1})
+#
+# for url in pilot_urls:
+#     print(url)
 
 class ReplacePilots():
 
-    client = pymongo.MongoClient()
-    db = client["starwars"]
-
     def __init__(self):
         self.pilot_url_list = []
+        self.pilot_names = []
 
-    # child - get pilot list, (pilot list might be empty)
+    # get pilot list, (pilot list might be empty)
     # - input is document from the starships collection
     # - output will be the pilot url list (if exists)
 
-    def get_pilot_url_list(self):
-        self.pilot_url_list = db.starships.find()
-        return self.pilot_url_list
+    # def get_pilot_url_list(self):
+    #     query = db.starships.find({},{"_id":0, "properties.pilots":1})
+    #     for item in query:
+    #         self.pilot_url_list.append(item)
+    #     return self.pilot_url_list
+
+    def get_char_name_from_people_id(self, id):
+        name = requests.get(f"https://www.swapi.tech/api/people/{id}").json()["result"]["properties"]["name"]
+        return name
+        pass
 
 
 attempt = ReplacePilots()
-print(attempt.pilot_url_list)
+attempt.get_char_name_from_people_id(4)
+# print(attempt.pilot_url_list)
 
 
 # print(the_collection.get())
