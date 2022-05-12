@@ -51,12 +51,12 @@ class Starships:
             self.ship_info.append(ship["result"]["properties"])
         return self.ship_info
 
-    # Sets pilot names to None
+    # Sets pilot names to None - Subroutine in get_pilot_info
     def empty_pilots(self, ship):
         ship["pilots"] = None
         return ship
 
-    # Sets pilot names to names given in each URL
+    # Sets pilot names to names given in each URL - Subroutine in get_pilot_info
     def pilots_exist(self, ship):
         pilots = []
         for url in ship["pilots"]:
@@ -74,6 +74,7 @@ class Starships:
                 self.pilots_exist(ship)
         return self.ship_info
 
+    # Creates empty collection for starships unless it exist
     def create_collection(self):
         if 'starships' in db.list_collection_names():
             print("starships: This colection already exists.")
@@ -82,13 +83,14 @@ class Starships:
             print ("starships: Colection has been added.")
             return(db.create_collection('starships'))
 
-
+    # Creates document for each starship
     def add_starships_docs(self):
         for ship in self.ship_info:
             db.starships.insert_one(ship)
             print(ship['name'],": added to collection")
-        return
+        return db.starships.find({})
 
+    # Replaces pilot name(s) with Character IDs for each starship
     def id_replace(self):
         for ship in self.ship_info:
             if ship['pilots'] != None:
@@ -97,6 +99,8 @@ class Starships:
                     ob = db.characters.find({'name':name},{'_id':1})
                     for id in ob:
                         id_list.append(id)
-                db.starships.update_one({'pilots': ship['pilots']}, {'$set': {'pilots': id_list}})
+                db.starships.update_one({'pilots': ship['pilots']},
+                                        {'$set': {'pilots': id_list}})
                 print(ship['pilots'],': has been replaced with: ', id_list)
+        return db.starships.find({})
 
