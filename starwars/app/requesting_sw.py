@@ -1,41 +1,36 @@
-import starwars.config_manager as conf
+# 1. Import necessary python libraries:
 import requests
+import pymongo
+import json
 
-sw = requests.get("https://www.swapi.tech/api/starships/9")
+# 2. Connecting and using starwars database on Mongocb:
+client = pymongo.MongoClient()
+db = client['starwars']
 
-def total_valid(url):
-    valid = []
-    sw = requests.get(url).json()
-    total = sw["total_records"]
-    for i in range(1, total + 1):
-        sws = requests.get(url+str(i))
-        if sws.status_code != 404:
-            valid.append(i)
-    return valid
-print (total_valid("https://www.swapi.tech/api/starships"))
+# starship API address:
+web_address = 'https://www.swapi.tech/api/starships'
 
 
-def no_pilots(ships, url):
-    no_pilots = []
-    for i in ships:
-        sw = requests.get(url+str(i))
-        data = sw.json()
-        ship_name = data["result"]["properties"]["name"]
-        pilot = data["result"]["properties"]["pilots"]
-        if len(pilot) <= 0:
-            no_pilots.append(ship_name)
-    return no_pilots
+# 3. The following function extract the data from the corresponding API address:
+def extract_data(url):
+    starship_url = requests.get(url)
+    starship_url = starship_url.json()
+    return starship_url
 
-def star_ships(ships, url):
-    ships_pilot = {}
-    for i in ships:
-        temp = []
-        sw = requests.get(url+str(i))
-        data = sw.json()
-        ship_name = data["result"]["properties"]["name"]
-        pilot = data["result"]["properties"]["pilots"]
-        if len(pilot) > 0:
-            for num in range(0, len(pilot)):
-                temp.append(pilot[num])
-            ships_pilot[ship_name] = temp
-    return ships_pilot
+# 4. The urls for the first page is stored as a list:
+starship_page = [value['url'] for value in extract_data(web_address)['results']]
+
+
+# 5. The following function extract the starship's urls for pages 2,3 and 4 and add them to the previous list:
+def get_url_for_all_pages():
+    current_page = extract_data(web_address)
+    while current_page['next'] != None:
+        current_page = requests.get(current_page['next'])
+        current_page = current_page.json()
+        for item in current_page['results']:
+            starship_page.append(item['url'])
+    return starship_page
+
+
+
+
