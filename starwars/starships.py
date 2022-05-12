@@ -4,7 +4,8 @@ import requests
 import pymongo
 
 client = pymongo.MongoClient()
-db= client['starwars']
+db = client['starwars']
+
 
 class Starships:
 
@@ -20,12 +21,22 @@ class Starships:
         try:
             self.content = json.loads(rq.sw.content)
             print("Code 200: request successful")
+            next_page = self.content['next']
+            self.get_next_page(next_page)
         except:
             raise
         finally:
             print("Requests Executed")
 
         return self.content
+
+    # Method to retrieve starship page data from each valid page
+    def get_next_page(self, next_page):
+        while next_page:
+            page_content = self.get_url(next_page)
+            self.content['results'].append(page_content['results'])
+            next_page = page_content['next']
+        return next_page
 
     # Method to retrieve starship info
     def get_starships(self):
@@ -80,14 +91,14 @@ class Starships:
             print("starships: This colection already exists.")
             return
         else:
-            print ("starships: Colection has been added.")
-            return(db.create_collection('starships'))
+            print("starships: Colection has been added.")
+            return (db.create_collection('starships'))
 
     # Creates document for each starship
     def add_starships_docs(self):
         for ship in self.ship_info:
             db.starships.insert_one(ship)
-            print(ship['name'],": added to collection")
+            print(ship['name'], ": added to collection")
         return db.starships.find({})
 
     # Replaces pilot name(s) with Character IDs for each starship
@@ -96,11 +107,10 @@ class Starships:
             if ship['pilots'] != None:
                 id_list = []
                 for name in ship['pilots']:
-                    ob = db.characters.find({'name':name},{'_id':1})
+                    ob = db.characters.find({'name': name}, {'_id': 1})
                     for id in ob:
                         id_list.append(id)
                 db.starships.update_one({'pilots': ship['pilots']},
                                         {'$set': {'pilots': id_list}})
-                print(ship['pilots'],': has been replaced with: ', id_list)
+                print(ship['pilots'], ': has been replaced with: ', id_list)
         return db.starships.find({})
-
