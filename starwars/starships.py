@@ -34,7 +34,7 @@ class Starships:
     def get_next_page(self, next_page):
         while next_page:
             page_content = self.get_url(next_page)
-            self.content['results'].append(page_content['results'])
+            self.content['results'].extend(page_content['results'])
             next_page = page_content['next']
         return next_page
 
