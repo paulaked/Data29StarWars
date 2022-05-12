@@ -38,7 +38,7 @@ class MyTestCase(unittest.TestCase):
                 'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
                 'name': 'CR90 corvette', 'url': 'https://www.swapi.tech/api/starships/2'}
         self.starships.empty_pilots(ship)
-        self.assertIs(ship["pilots"],None , "Value must be None")
+        self.assertIs(ship["pilots"], None, "Value must be None")
 
     # Tests if pilots exists returns not an empty list
     def test_pilots_exist(self):
@@ -46,12 +46,14 @@ class MyTestCase(unittest.TestCase):
                 'manufacturer': 'Corellian Engineering Corporation', 'cost_in_credits': '100000',
                 'length': '34.37', 'crew': '4', 'passengers': '6', 'max_atmosphering_speed': '1050',
                 'hyperdrive_rating': '0.5', 'MGLT': '75', 'cargo_capacity': '100000',
-                'consumables': '2 months', 'pilots': ['https://www.swapi.tech/api/people/13', 'https://www.swapi.tech/api/people/14', 'https://www.swapi.tech/api/people/25', 'https://www.swapi.tech/api/people/31'],
+                'consumables': '2 months',
+                'pilots': ['https://www.swapi.tech/api/people/13', 'https://www.swapi.tech/api/people/14',
+                           'https://www.swapi.tech/api/people/25', 'https://www.swapi.tech/api/people/31'],
                 'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
                 'name': 'Millennium Falcon', 'url': 'https://www.swapi.tech/api/starships/10'}
         self.starships.pilots_exist(ship)
-        self.assertIsNotNone (ship["pilots"], "Values cannot be none")
-        self.assertIs(type(ship["pilots"]),list, "Must be a list")
+        self.assertIsNotNone(ship["pilots"], "Values cannot be none")
+        self.assertIs(type(ship["pilots"]), list, "Must be a list")
 
 
 if __name__ == '__main__':
