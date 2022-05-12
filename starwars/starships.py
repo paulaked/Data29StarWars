@@ -59,7 +59,7 @@ class Starships:
         for url in ship["pilots"]:
             pilots.append(self.get_url(url)["result"]["properties"]["name"])
         ship.update({"pilots": pilots})
-        print("Starship " + ship["name"] + " has pilots: " + ship["pilots"])
+        print("Starship " + ship["name"] + " has pilots: " , ship["pilots"])
         return ship
 
     # Method to set pilot names accordingly
