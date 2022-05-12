@@ -16,5 +16,10 @@ A mongoDB database with a database called 'starwars'. Within 'starwars' must be 
 
 
 ### 2. Running files
-Run the '__main__.py' file only. 'starships.py' contains all class methods and attributes. Testing for class attributes is in 'test_starship.py', located within the 'tests' subfolder.
+
+Run the '_main_.py' file only. 'starships.py' contains all class methods and attributes. Testing for class attributes is in 'test_starship.py', located within the 'tests' subfolder.
+
+## Notes
+
+Duplicates of starship documents can be made. In order to remove duplicates, delete starships collection and run '_main_.py' once.
 
