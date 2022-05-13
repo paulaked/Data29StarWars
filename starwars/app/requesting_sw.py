@@ -56,10 +56,10 @@ def get_and_replace_pilots_id():
 
 # Step 7 - Drop the existing starship collection from Mongodb then create a new collection:
 db.drop_collection("Starship")
-print('dropped')
+print('Dropped')
 
 db.create_collection("Starship")
-print('the collection was created successfully')
+print('Collection created')
 
 # Step 8 - All starships are added to the Starship collection on Mongodb:
 for i in get_and_replace_pilots_id():
