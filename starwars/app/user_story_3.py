@@ -16,6 +16,13 @@ def list_starship():
 
 # print(list_starship())
 
+def list_character():
+    all_characters = db.characters.find()
+    list_characters = []
+    for character in all_characters:
+        list_characters.append(character)
+    return list_characters
+
 def replace_names():
     for starship in list_starship():
         if starship["properties"]["pilots"] == []:
@@ -33,5 +40,5 @@ def replace_names():
 # list_starship()
 # replace_names()
 
-print(db.characters.find_one({"name": "Darth Vader"},{"_id":1}))
-print(db.characters.find_one({"name": "Darth Vader"},{"_id":1})["_id"])
+# print(db.characters.find_one({"name": "Darth Vader"},{"_id":1}))
+# print(db.characters.find_one({"name": "Darth Vader"},{"_id":1})["_id"])
