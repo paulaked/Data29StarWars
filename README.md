@@ -10,6 +10,7 @@ This repo makes a few assumptions:
 1. you have a mongodb database named "starwars"
 2. within this database you have a collection named "characters"
 3. within that collection you have the properties of all the people from the Star Wars API stored
+4. you do NOT already have a collection named "starships" in your "starwars" database
 
 ### Navigating this repo
 #### \__main\__.py
