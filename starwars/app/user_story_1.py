@@ -1,5 +1,4 @@
 import requests
-import json
 import pymongo
 
 client = pymongo.MongoClient()

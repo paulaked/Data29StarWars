@@ -1,10 +1,15 @@
 from app.user_story_1 import StarshipsData
+import app.user_story_2 as us2
 
 
 if __name__ == '__main__':
     starships = StarshipsData()
     starships.create_collection()
     # we have now created a collection containing starship data
+
+    us2.list_starship()
+    us2.replace_urls()
+    # we have now replaced the pilot urls with a list of associated names
 
 
 
