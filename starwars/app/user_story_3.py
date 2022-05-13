@@ -19,12 +19,10 @@ def replace_names():
         if starship["properties"]["pilots"] == []:
             pass
         else:
-            print(starship["properties"]["model"])
             object_id_list = []
             for name in starship["properties"]["pilots"]:
                 # query the characters database to get the object id based on the name
                 object_id = db.characters.find_one({"name":name}, {"_id":1})["_id"]
                 object_id_list.append(object_id)
-                print(object_id)
             # update the starships collection by replacing names with object IDs
             db.starships.update_one({"_id": starship["_id"]}, {"$set": {"properties.pilots": object_id_list}})

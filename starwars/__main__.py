@@ -7,16 +7,14 @@ client = pymongo.MongoClient()
 db = client["starwars"]
 
 if __name__ == '__main__':
+    # this creates a collection containing starship data
     starships = StarshipsData()
     starships.create_collection()
-    # we have now created a collection containing starship data
 
+    # this replaces the pilot urls with a list of associated names
     us2.list_starship()
     us2.replace_urls()
-    # we have now replaced the pilot urls with a list of associated names
 
+    # this replaces names with object ids of characters
     us3.list_starship()
     us3.replace_names()
-
-
-    pass  # Replace this with code to run your app
