@@ -1,6 +1,6 @@
 # Data 29 Star Wars Project
 
-##Aims and Objectives
+## Aim
 
 Using Python, write code to pull data on all available starships from the API.
 The "pilots" key contains URLs pointing to the characters who pilot the starship.
@@ -28,7 +28,7 @@ to run the code make sure the starship collection does not exist (you may need t
 ## Using this repo
 
 - Branch off from main.
-- Use your own name for the name of the branch (e.g. mine would be PaulaKedra - please copy this format).
+- Use your own name for the name of the branch (e.g. mine would be FahimulHaque - please copy this format).
 - Make sure you commit and push to the remote repo frequently to keep your work up-to-date.
 - The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
 - Replace this README with an appropriate README for your project (including a link to your job board).
