@@ -2,7 +2,7 @@
 # Starships are then swapped for the corresponding object ids in the current
 # characters collections stored within the Mongodb database
 # The starship data will then be added to a new starship collection in the mongodb starwars database
-
+  
 import requests
 import pymongo
 
