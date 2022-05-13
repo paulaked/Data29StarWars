@@ -1,5 +1,5 @@
-#a test to check if the correct type of information is extracted
-url = starship_req = requests.get("https://swapi.tech/api/starships")
+import unittest
 
-def test_get_api():
-    assert type(get_api(url_list)) is dict
+#a test to check if the correct type of information is extracted
+def test_getting_urls():
+    assert type(getting_urls()) is dict
