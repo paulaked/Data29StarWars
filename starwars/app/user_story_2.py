@@ -14,7 +14,7 @@ def list_starship():
         list_starships.append(starship)
     return list_starships
 
-print(list_starship())
+# print(list_starship())
 
 def replace_urls():
     for starship in list_starship():
