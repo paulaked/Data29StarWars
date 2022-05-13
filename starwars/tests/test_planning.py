@@ -1,12 +1,13 @@
-# UNIT TESTING PLANNING
+from starwars.app.requesting_sw import *
 
 
-# TEST FUNCTION TO PULL ALL AVAILIBLE STARSHIPS FROM API
+def test_extraction():
+    assert data(web_address) == dict(data(web_address))
 
-# TEST FUNCTION TO CHECK INTO THE URL AND EXTRACT ALL STARSHIPS TO EXTRACT ALL AVAILIBLE DATA
 
-# TEST FUNCTION TO REPLACE THE PILOT KEY WITH OBJJECT ID
+def test_pages_url():
+    assert get_url_data_from_all_pages() == list(get_url_data_from_all_pages())
 
-# TEST FUNCTION TO INSERT STARSHIPS INTO THEIR OWN COLLECTION IN MONGODB
 
-https://trello.com/b/1NfGyd8b/starwars-project-solomun
+def test_pilots_id():
+    assert get_and_replace_pilots_id() == list(get_and_replace_pilots_id())
