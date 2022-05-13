@@ -11,9 +11,9 @@ ss_json = starships_req.json()
 
 
 ## TARGET PILOT KEYS VIA API VALUES
-def change_pilot_values():
+def change_pilot_values(json_object):
     altered_ss = []
-    for i in ss_json['results']:
+    for i in json_object['results']:
         get_ss = request_api_online(i['url']).json()
         for k in range(0, len(get_ss['result']['properties']['pilots'])):
             get_id = request_api_online(get_ss['result']['properties']['pilots'][k]).json()['result']['_id']
@@ -22,4 +22,4 @@ def change_pilot_values():
 
     return json.dumps(altered_ss)
 
-change_pilot_values()
+change_pilot_values(ss_json)
