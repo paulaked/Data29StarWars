@@ -52,6 +52,8 @@ class MyTestCase(unittest.TestCase):
         output = self.starships.get_next_page(next_page)
         self.assertGreater(len(output['results']),len(page_content['results']),
                            'Content was not added to results dictionary')
+        self.assertEqual(type(output['results']),list, 'Content within results dictionary needs to output a list')
+        self.assertEqual(type(output), dict, 'Dictionary was expected as output')
 
     # Tests if get starships gives a list as a response
     def test_get_starships(self):
