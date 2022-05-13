@@ -1,27 +1,26 @@
-# 1. Import necessary python packages:
+# Step 1 - Import necessary python packages:
 import requests
 import pymongo
 import json
 
-# 2. Connecting and using starwars database on Mongodb:
+# Step 2 - Connecting and using starwars database on Mongodb:
 client = pymongo.MongoClient()
 db = client['starwars']
 
-# starship API address:
 web_address = 'https://www.swapi.tech/api/starships'
 
 
-# 3. The following function extract the data from the corresponding API address:
+# Step 3 - This function extracts the data from the corresponding API:
 def extract_data(url):
     starship_url = requests.get(url)
     starship_url = starship_url.json()
     return starship_url
 
-# 4. The urls for the first page is stored as a list:
+# Step 4 - The first page of the URL is stored as a list:
 starship_page = [value['url'] for value in extract_data(web_address)['results']]
 
 
-# 5. The following function extract the starship's urls for pages 2,3 and 4 and add them to the previous list:
+# Step 5 - This function extracts the starship's URLs for the remaining pages and adds them to the previous list:
 def get_url_for_all_pages():
     current_page = extract_data(web_address)
     while current_page['next'] != None:
@@ -32,8 +31,7 @@ def get_url_for_all_pages():
     return starship_page
 
 
-# 6. The last function extracts the name of the pilots and find their id on character collection and replace
-# the pilot values with the matching ids:
+# Step 6 - The last function extracts the name of the pilots to find their ID and replace the URL with the ID:
 def get_and_replace_pilots_id():
     starships = []
     for i in get_url_for_all_pages():
@@ -56,15 +54,14 @@ def get_and_replace_pilots_id():
     return starships
 
 
-# 7. Drop the existing starship collection from Mongodb:
+# Step 7 - Drop the existing starship collection from Mongodb then create a new collection:
 db.drop_collection("Starship")
 print('dropped')
 
-# 8. Creating the starship collecton if it doesn't exist on Mongodb:
 db.create_collection("Starship")
 print('the collection was created successfully')
 
-# 9. Different starships are added to the Starship collection on Mongodb:
+# Step 8 - All starships are added to the Starship collection on Mongodb:
 for i in get_and_replace_pilots_id():
     db.Starship.insert_one(i)
 
