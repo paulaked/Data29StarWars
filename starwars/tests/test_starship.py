@@ -16,7 +16,44 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(type(actual), dict, "Type Check Failed: Dictionary expected")
         self.assertIsNotNone(actual, "Dictionary is empty")
 
-    # Tests if requests gives a dictionary as a response
+    # Tests if next page gives a greater amount of content back and is appending to the results dict
+    def test_get_next_page(self):
+        self.starships.content = {
+    "count": 36,
+    "next": "https://swapi.dev/api/starships/?page=2",
+    "previous": "",
+    "results": [
+        {
+            "name": "CR90 corvette",
+            "model": "CR90 corvette",
+            "manufacturer": "Corellian Engineering Corporation",
+            "cost_in_credits": "3500000",
+            "length": "150",
+            "max_atmosphering_speed": "950",
+            "crew": "30-165",
+            "passengers": "600",
+            "cargo_capacity": "3000000",
+            "consumables": "1 year",
+            "hyperdrive_rating": "2.0",
+            "MGLT": "60",
+            "starship_class": "corvette",
+            "pilots": [],
+            "films": [
+                "https://swapi.dev/api/films/1/",
+                "https://swapi.dev/api/films/3/",
+                "https://swapi.dev/api/films/6/"
+            ],
+            "created": "2014-12-10T14:20:33.369000Z",
+            "edited": "2014-12-20T21:23:49.867000Z",
+            "url": "https://swapi.dev/api/starships/2/"
+        }]}
+        next_page = "https://swapi.dev/api/starships/?page=2"
+        page_content = self.starships.get_url(next_page)
+        output = self.starships.get_next_page(next_page)
+        self.assertGreater(len(output['results']),len(page_content['results']),
+                           'Content was not added to results dictionary')
+
+    # Tests if get starships gives a list as a response
     def test_get_starships(self):
         self.starships.requesting()
         actual = self.starships.get_starships()

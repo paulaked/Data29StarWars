@@ -27,7 +27,6 @@ class Starships:
             raise
         finally:
             print("Requests Executed")
-
         return self.content
 
     # Method to retrieve starship page data from each valid page
@@ -36,7 +35,7 @@ class Starships:
             page_content = self.get_url(next_page)
             self.content['results'].extend(page_content['results'])
             next_page = page_content['next']
-        return next_page
+        return self.content
 
     # Method to retrieve starship info
     def get_starships(self):
