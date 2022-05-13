@@ -25,8 +25,6 @@ def get_starships(sw_1): # gets the raw data
 
 print(get_starships(sw_1))
 
-#
-
 
 starships_1 = []
 for i in sw_1['results']: # filters the data to display on the results key
@@ -57,4 +55,4 @@ print(starships_1)
 # adds to MongoDB
 db.drop.collection('starships')
 db.create_collection("starships")
-db.starships.insert_one(starships_1)
+db.starships.insert_many(starships_1)
