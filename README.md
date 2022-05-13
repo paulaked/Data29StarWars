@@ -21,5 +21,13 @@ You have until Friday EOD.
 - Good use of Git and GitHub. Commit and push often with meaningful commit messages.
 - Include an appropriate version of this README
 
+## Infomation
+In order for this code to work you will need to have a database in mongo db named 'starwars' with a collection named 'characters' which include the data on 87 star wars charaters.
+
+The code creates a collection called starships which includes all the star ships that can be attained through the api mentioned above.
+The collection also includes star ships that don't have registered pilots and where there are pilots for the ships the pilot's ObjectID be seen. To execute the code run the _main_.py file.
+Functions are used and imported in the main file. Testing has been done using unit testing and they have all passed. 
+
+
 ## My Job Board 
 https://trello.com/b/8JaVhobU/star-wars

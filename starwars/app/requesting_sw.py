@@ -1,77 +1,106 @@
-import starwars.config_manager as conf
+#import starwars.config_manager as conf
 import requests
 
-# def api(url):
-#     sw = requests.get(url)
-#     return sw
-# sw = requests.get(conf.SWAPI_URL)
-# sw = requests.get("https://www.swapi.tech/api/starships/9")
 
-
-def total_valid(url):
-    valid = []
-    sw = requests.get(url).json()
+# This function gets all the valid ships from the api and returns them as list
+def total_valid_ships(url):
+    all_ships = []
+    sw = requests.get(url)
+    sw = sw.json()
     total = sw["total_records"]
-    # gets the total number of star ships
+    # gets the total number of star ships from the api
     for i in range(1, total+1):
         sws = requests.get(url+str(i))
+        # requests the starships/1 starships/2 starships/3 etc...
+        data = sws.json()
         if sws.status_code != 404:
-            valid.append(i)
-    #get the numbers of the valid star ships
-    return valid
+            # if the response from the api is not empty it will add it to the all_ships list
+            all_ships.append(data["result"]["properties"])
+    return all_ships
 
 
-#valid = [2, 3, 5, 9, 10, 11, 12, 13, 15, 17, 21, 22, 23, 27, 28, 29, 31, 32]
-
-def no_pilots(ships, url):
-    no_pilots = []
-    for i in ships:
-        sw = requests.get(url+str(i))
-        data = sw.json()
-        ship_name = data["result"]["properties"]["name"]
-        pilot = data["result"]["properties"]["pilots"]
-        if len(pilot) <= 0:
-            no_pilots.append(ship_name)
-    return no_pilots
-
-#
-#no_pilots_ships = no_pilots(valid,"https://www.swapi.tech/api/starships/")
-
-def star_ships(ships, url):
+# The function below gets all the ships that have a pilot and return a dictionary that has the ships names as keys and
+# the values are the urls.
+def star_ships_pilot_url(ships):
     ships_pilots = {}
     for i in ships:
-        temp = []
-        sw = requests.get(url+str(i))
-        data = sw.json()
-        ship_name = data["result"]["properties"]["name"]
-        pilot = data["result"]["properties"]["pilots"]
+        pilot_url = [] # keeps a list of the pilots url.
+        ship_name = i["name"] # get the name of the ship that the loop is iterating through.
+        pilot = i["pilots"] # get the list of pilot urls.
         if len(pilot) > 0:
-            for num in range(0, len(pilot)):
-                temp.append(pilot[num])
-            ships_pilots[ship_name] = temp
+            # if the ship has pilots it executes the code below.
+            for num in range(0, len(pilot)): # for each url in the list it is appended to the pilot_url list.
+                pilot_url.append(pilot[num])
+            ships_pilots[ship_name] = pilot_url # with the ship name being the key the pilot urls are assigned as the values.
     return ships_pilots
 
-# print(star_ships(valid,"https://www.swapi.tech/api/starships/"))
 
 
-def get_pilots(test):
-    ships_pilot_id = {}
-    for ships in test:
-        temp = []
-        for pilot in range(0, len(test[ships])):
-            p = requests.get(test[ships][pilot]).json()
-            pp=p["result"]["_id"]
-            temp.append(pp)
-        ships_pilot_id[ships] = temp
-    return ships_pilot_id
+# This function gets the name of the pilot and links it with the ship
+def get_pilots_name(ship_dict):
+    ships_pilot= {}
+    for ships in ship_dict:
+        pilot_names = []
+        for pilot in range(0, len(ship_dict[ships])):
+            pilot_url = requests.get(ship_dict[ships][pilot])
+            p = pilot_url.json()
+            pilot_name = p["result"]["properties"]["name"]
+            pilot_names.append(pilot_name)
+        ships_pilot[ships] = pilot_names
 
-valid = total_valid("https://www.swapi.tech/api/starships/")
-print(get_pilots(star_ships(valid, "https://www.swapi.tech/api/starships/")))
+    return ships_pilot
+
+# this functions returns a list of all the ships. Where when the ship has a pilot the name of the pilot is stored
+# instead of the url.
+
+def all_ships(all_ships, ships_with_pilots):
+    ship_names = []
+    for names in ships_with_pilots:
+        ship_names.append(names)
+    for i in range(0, len(all_ships)):
+        if all_ships[i]["name"] in ship_names:
+            z = ships_with_pilots.get(all_ships[i]["name"])
+            all_ships[i]["pilots"] = z
+    return all_ships
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # {'Millennium Falcon': ['Chewbacca', 'Han Solo', 'Lando Calrissian', 'Nien Nunb'],
+# #  'X-wing': ['Luke Skywalker', 'Biggs Darklighter', 'Wedge Antilles', 'Jek Tono Porkins'],
+# #  'TIE Advanced x1': ['Darth Vader'],
+# #  'Slave 1': ['Boba Fett'],
+# #  'Imperial shuttle': ['Luke Skywalker', 'Chewbacca', 'Han Solo'],
+# #  'A-wing': ['Arvel Crynyd']}
+#
 
 
 
