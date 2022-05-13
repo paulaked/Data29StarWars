@@ -20,7 +20,8 @@ data = json.load(f)
 f.close()
 # The function below creates an empty 'starwships' collection
 creating_starships()
-# the json file is accessed and passed the function adding all the ships to the 'starships' collection
+# the json file which stores the starships data is accessed and passed to the function below
+# adding all the ships to the 'starships' collection
 add_ships_data(data)
 
 
