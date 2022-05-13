@@ -16,3 +16,4 @@ class TestAlterStarships(unittest.TestCase):
     def test_change_pilot_values(self):
         result = alter_starships.change_pilot_values(self.starship_json)
         self.assertEqual(result, self.altered_ss_comparison)
+

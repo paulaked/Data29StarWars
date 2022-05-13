@@ -20,11 +20,11 @@ def change_pilot_values(json_object):
         for k in range(0, len(get_ss['result']['properties']['pilots'])):
             get_id = request_api_online(get_ss['result']['properties']['pilots'][k]).json()['result']['_id']
             get_ss['result']['properties']['pilots'][k] = get_id
-            altered_ss.append(get_ss['result'])
-    # print(len(json.loads(json.dumps(altered_ss))))
-    # print(json.dumps(altered_ss))
-    # return json.loads(json.dumps(altered_ss))
-    return json.dumps(altered_ss)
+        altered_ss.append(get_ss)
+            # print(get_ss['result']['properties']['pilots'][k])
+    return altered_ss
+    # for i in altered_ss:
+    #     print(i)
 
 # change_pilot_values(ss_json)
 
