@@ -2,4 +2,4 @@
 url = starship_req = requests.get("https://swapi.tech/api/starships")
 
 def test_get_api():
-    assert type(get_api(url)) is dict
+    assert type(get_api(url_list)) is dict
