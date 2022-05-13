@@ -24,6 +24,10 @@ one for each of the user stories (see task board for more info on user stories).
 The tests folder will contain unit test files used for the files in the app folder. Here the tests are again split
 into files for the relevant user story code it is testing. Use ```pytest -v``` in terminal to test.
 
+### Note on tests
+`test_replace_names` was written based on local character object IDs so will fail on your system. Please see below
+which shows test passing;
+![img.png](img.png)
 
 ### Task board
 https://guttural-waste-40d.notion.site/Star-wars-project-task-56f034f986104eb68443b0721f55ba53
