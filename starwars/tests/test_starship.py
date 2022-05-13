@@ -2,7 +2,8 @@ import unittest
 from starwars.starships import Starships
 import pymongo
 
-
+client = pymongo.MongoClient()
+db = client['test_starwars'] #Added Test Database
 
 class MyTestCase(unittest.TestCase):
 
@@ -98,6 +99,25 @@ class MyTestCase(unittest.TestCase):
         self.assertIs(type(ship["pilots"]), list, "Must be a list")
         self.assertEqual(initial_len, len(ship["pilots"]), "Initial length of list,"
                                                            " doesn't match current list length")
+
+    # Tests if document count increases
+    def test_add_starships_docs(self):
+        initial_count = db.starships.count_documents({})
+        self.starships.ship_info = [{'model': 'YT-1300 light freighter', 'starship_class': 'Light freighter',
+                'manufacturer': 'Corellian Engineering Corporation', 'cost_in_credits': '100000',
+                'length': '34.37', 'crew': '4', 'passengers': '6', 'max_atmosphering_speed': '1050',
+                'hyperdrive_rating': '0.5', 'MGLT': '75', 'cargo_capacity': '100000',
+                'consumables': '2 months',
+                'pilots': ['Chewbacca', 'Han Solo', 'Lando Calrissian', 'Nien Nunb'],
+                'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
+                'name': 'Millennium Falcon', 'url': 'https://www.swapi.tech/api/starships/10'}]
+        for ship in self.starships.ship_info:
+            db.starships.insert_one(ship)
+            print(ship['name'], ": added to collection")
+        final_count = db.starships.count_documents({})
+        self.assertGreater(final_count,initial_count, 'Documents count expected to be greater than the initial count')
+        return db.starships.find({})
+
 
 
 if __name__ == '__main__':
