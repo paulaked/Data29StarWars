@@ -18,7 +18,7 @@ with open("all_ships.json", "w") as jsonfile:
 f = open('all_ships.json')
 data = json.load(f)
 f.close()
-# The function below creates an empty 'starchips' collection
+# The function below creates an empty 'starwships' collection
 creating_starships()
 # the json file is accessed and passed the function adding all the ships to the 'starships' collection
 add_ships_data(data)
