@@ -1,8 +1,7 @@
 ## EXTRACT STARSHIPS DATASET
 import requests
 import json
-
-
+import pymongo
 
 
 def request_api_online(link):
@@ -13,19 +12,35 @@ ss_json = starships_req.json()
 
 
 ## TARGET PILOT KEYS VIA API VALUES
-def change_pilot_values():
+def change_pilot_values(json_object):
     altered_ss = []
-    for i in ss_json['results']:
+    for i in json_object['results']:
+        new_key = {}
         get_ss = request_api_online(i['url']).json()
         for k in range(0, len(get_ss['result']['properties']['pilots'])):
             get_id = request_api_online(get_ss['result']['properties']['pilots'][k]).json()['result']['_id']
             get_ss['result']['properties']['pilots'][k] = get_id
-            # print(get_name)
             altered_ss.append(get_ss['result'])
-        # print(get_ss)
-    altered_ss_json = json.dumps(altered_ss)
-    print(type(altered_ss_json))
-    print(altered_ss_json)
-    return altered_ss_json
+    # print(len(json.loads(json.dumps(altered_ss))))
+    # print(json.dumps(altered_ss))
+    # return json.loads(json.dumps(altered_ss))
+    return json.dumps(altered_ss)
 
-change_pilot_values()
+# change_pilot_values(ss_json)
+
+
+## PUSH NEW COLLECTION TO MONGODB
+my_mongo = pymongo.MongoClient('mongodb://localhost:27017')
+def add_to_mongo():
+    db = my_mongo['starwars']
+    print(db.list_collection_names())
+    print('-----')
+    new_collection = db['starships']
+    # new_collection.insert_many(change_pilot_values(ss_json))
+    for i in range(0, len(change_pilot_values(ss_json))):
+        new_collection.insert_one(change_pilot_values(ss_json)[i])
+        print('added')
+    print('-----')
+    print(db.list_collection_names())
+
+add_to_mongo()

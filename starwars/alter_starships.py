@@ -22,4 +22,8 @@ def change_pilot_values(json_object):
 
     return json.dumps(altered_ss)
 
-change_pilot_values(ss_json)
+# change_pilot_values(ss_json)
+
+
+## PUSH NEW COLLECTION TO MONGODB
+
