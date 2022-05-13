@@ -10,7 +10,7 @@ Use these to replace 'pilots' with a list of ObjectIDs from our characters colle
 
 to run the code make sure the starship collection does not exist (you may need to drop/ delete on mongodb). Otherwise, this will cause problems with the code. If error still exists you may need to restart MongoDB or the environment you are running.
 
-- Next go into the "tests" file and run the "starship" code. 
+- Next go into the "starwars" file and run the "starship.py" code. 
 - Running the code will take a few minutes to execute completely. 
 - You will know the code has run completely when the console displays "The starships have been added successfully".
 - Check your MongoDB compass to see the collection labelled "Starship"
