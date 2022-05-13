@@ -29,5 +29,17 @@ You have until Friday EOD.
 - The gitignore should catch most unnecessary project files, but do pay attention to what you are adding to the repo.
 - Replace this README with an appropriate README for your project (including a link to your job board).
 
-## Trello 
-https://trello.com/b/l15qgKsd/data29starwars
+## Trello (2 links, both same)
+- https://trello.com/b/l15qgKsd/data29starwars
+- https://trello.com/invite/b/l15qgKsd/7969ac84fd863f50acbcd5e9e892f35b/data29starwars
+
+## CODE - introduction 
+
+- This code uses 2 main files - starships.py and starship_t.py 
+- The starships.py is the main and involves 3 main functions 
+- get_data() - gets url data from API in json format
+- get_all_url() - gets all url data from every page
+- replace_pilots_with_id() - replaces pilots names with ids 
+
+- starships_t tests the 3 functions 
+
