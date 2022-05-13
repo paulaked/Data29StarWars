@@ -1,6 +1,8 @@
 import requests
 import pymongo
 
+# replace pilot urls with pilot names
+
 client = pymongo.MongoClient()
 db = client["starwars"]
 
@@ -12,6 +14,7 @@ def list_starship():
         list_starships.append(starship)
     return list_starships
 
+print(list_starship())
 
 def replace_urls():
     for starship in list_starship():
@@ -26,4 +29,4 @@ def replace_urls():
             db.starships.update_one({"_id": starship["_id"] }, {"$set": {"properties.pilots": pilot_names }})
 
 
-replace_urls()
+# replace_urls()

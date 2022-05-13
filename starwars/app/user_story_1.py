@@ -44,4 +44,8 @@ class StarshipsData:
 
 
 # some_data = StarshipsData()
-# some_data.create_collection()
+# # # some_data.create_collection()
+# some_data.get_raw_starship_data()
+# some_data.starships_url_list()
+# print(some_data.url_list)
+# print(len(some_data.url_list))

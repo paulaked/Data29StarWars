@@ -1,6 +1,8 @@
 from app.user_story_1 import StarshipsData
 import app.user_story_2 as us2
 
+client = pymongo.MongoClient()
+db = client["starwars"]
 
 if __name__ == '__main__':
     starships = StarshipsData()
