@@ -1,10 +1,13 @@
-import unittest
-from starwars.starships import Starships
-
-class test (unittest.test):
-    def setUp(self) -> None:
-        self.starships = Starships()
+from starwars.app.requesting_sw import *
 
 
-# if __name__ == '__main__':
-#     unittest.main()
+def test_the_source():
+    assert extract_data(web_address) == dict(extract_data(web_address))
+
+
+def test_the_page_urls():
+    assert get_url_for_all_pages() == list(get_url_for_all_pages())
+
+
+def test_the_pilots_id():
+    assert get_and_replace_pilots_id() == list(get_and_replace_pilots_id())
