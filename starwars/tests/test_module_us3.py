@@ -16,11 +16,6 @@ class UnitTests(unittest.TestCase):
         expected = 36
         self.assertEqual(actual, expected, "Expected 36 entries in list")
 
-    def test_list_characters(self):
-        actual = len(self.list2)
-        expected = 87
-        self.assertEqual(actual, expected, "Expected is 87 entries in list of characters")
-
     # def test_replace_names(self):
     #     test_character = db["test_character"]
     #     test_starship = db["test_starship"]

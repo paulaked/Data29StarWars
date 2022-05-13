@@ -14,14 +14,6 @@ def list_starship():
         list_starships.append(starship)
     return list_starships
 
-# print(list_starship())
-
-def list_character():
-    all_characters = db.characters.find()
-    list_characters = []
-    for character in all_characters:
-        list_characters.append(character)
-    return list_characters
 
 def replace_names():
     for starship in list_starship():
@@ -32,7 +24,7 @@ def replace_names():
             object_id_list = []
             for name in starship["properties"]["pilots"]:
                 print(name)
-                object_id = db.characters.find_one({"name": name},{"_id":1})
+                object_id = db.characters.find_one({"name":name}, {"_id":1})["_id"]
                 object_id_list.append(object_id)
                 print(object_id)
             db.starships.update_one({"_id": starship["_id"]}, {"$set": {"properties.pilots": object_id_list}})
