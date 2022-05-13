@@ -9,6 +9,8 @@ db = client["starwars"]
 sw = requests.get("https://www.swapi.tech/api/starships") # imports data from the first page of the api
 sw_1 = sw.json()
 
+# The function below extracts all the data from all four pages.
+
 
 def get_starships(sw_1): # gets the raw data
     url = sw_1['next'] # filters the data so that the next page can be extracted
@@ -23,6 +25,8 @@ def get_starships(sw_1): # gets the raw data
 
 print(get_starships(sw_1))
 
+#
+
 
 starships_1 = []
 for i in sw_1['results']: # filters the data to display on the results key
@@ -30,6 +34,8 @@ for i in sw_1['results']: # filters the data to display on the results key
     pilot = x['result']['properties'] # filters the data to display on the results key
     starships_1.append(pilot)
 print(starships_1)
+
+# Replaces pilots urls to names and then to object id
 
 
 for i in starships_1:
@@ -40,7 +46,7 @@ for i in starships_1:
         pilots = []
         for n in new_pilot:
 
-            w = requests.get(n).json() # pulls out 
+            w = requests.get(n).json() # pulls out
             update_pilot = w['result']['properties']['name']  # filters the names of the pilots
             pilots.append(db.characters.find_one({"name": update_pilot}, {"_id": 1}))  # appends the pilots names
             # with a list of ObjectIDs
@@ -48,5 +54,7 @@ for i in starships_1:
 
 print(starships_1)
 
+# adds to MongoDB
+db.drop.collection('starships')
 db.create_collection("starships")
 db.starships.insert_one(starships_1)
