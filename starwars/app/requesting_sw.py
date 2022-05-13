@@ -4,28 +4,23 @@ import requests
 import pymongo
 
 # requesting data from api
-starship_req = requests.get("https://swapi.tech/api/starships")
-starship_re2 = requests.get("https://www.swapi.tech/api/starships?page=2&limit=10")
-starship_req3 = requests.get("https://www.swapi.tech/api/starships?page=3&limit=10")
-starship_re4 = requests.get("https://swapi.tech/api/starships?page=4&limit=10")
+def get_api(url):
+    starship_req = requests.get(url)
+    return starship_req
 
-#converting to json files
-starship1 = starship_req.json()
-starship2 = starship_re2.json()
-starship3 = starship_req3.json()
-starship4 = starship_re4.json()
+starship_req = requests.get("https://swapi.tech/api/starships").json()
+starship_req2 = requests.get("https://www.swapi.tech/api/starships?page=2&limit=10").json()
+starship_req3 = requests.get("https://www.swapi.tech/api/starships?page=3&limit=10").json()
+starship_req4 = requests.get("https://swapi.tech/api/starships?page=4&limit=10").json()
 
-#print(starship1)
-#print(starship2)
-#print(starship3)
-#print(starship4)
 
-list = starship1.get('results')
-list2 = starship2.get('results')
-list3 = starship3.get('results')
-list4 = starship4.get('results')
+list = starship_req.get('results')
+list2 = starship_req2.get('results')
+list3 = starship_req3.get('results')
+list4 = starship_req4.get('results')
 
-#getting the urls for all the starships
+#getting the urls for all the starships into one list
+
 starship_urls = []
 for i in list:
     starship_urls.append(i.get('url'))
@@ -35,17 +30,28 @@ for i in list3:
     starship_urls.append(i.get('url'))
 for i in list4:
     starship_urls.append(i.get('url'))
+#print(starship_urls)
 
-print(starship_urls)
-
-#getting properties for all the starships
-properties_list = []
+#getting properties for all the starships and changing the urls to names
 for url in starship_urls:
-    properties_list.append((requests.get(url)).json()['result']['properties']) #appending properties into a list
-print(properties_list)
+    properties = requests.get(url).json()['result']['properties']
+    properties['new pilots'] = []
+    if properties['pilots'] == []:
+        pass
+    else:
+        for character in properties['pilots']:
+            properties['new pilots'].append(requests.get(character).json()['result']['properties']['name'])
+    print(properties)
 
-def properties(api_url):
-    
+
+
+
+
+
+
+
+
+
 
 
 
