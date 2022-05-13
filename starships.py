@@ -1,17 +1,8 @@
-import pymongo
-import requests
-import json
-import starwars.app.requesting_sw as r_q
+from starwars.app.requesting_sw import *
 
-client = pymongo.MongoClient()
-db = client["starwars"]
+def source_code_test ():
+    assert get_request('api_address') == dict(get_request('api_address'))
 
-db.drop_collection("starships")
-
-
-class Starships:
-    def __init__(self):
-        self.ship_info = []
-        self.content = {}
-        self.star_ship = {}
+def test_page_urls ():
+    assert collect_urls() == list(collect_urls()
 
