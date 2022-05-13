@@ -3,8 +3,6 @@ import requests
 import json
 
 
-
-
 def request_api_online(link):
     return requests.get(link)
 
@@ -20,12 +18,8 @@ def change_pilot_values():
         for k in range(0, len(get_ss['result']['properties']['pilots'])):
             get_id = request_api_online(get_ss['result']['properties']['pilots'][k]).json()['result']['_id']
             get_ss['result']['properties']['pilots'][k] = get_id
-            # print(get_name)
             altered_ss.append(get_ss['result'])
-        # print(get_ss)
-    altered_ss_json = json.dumps(altered_ss)
-    print(type(altered_ss_json))
-    print(altered_ss_json)
-    return altered_ss_json
+
+    return json.dumps(altered_ss)
 
 change_pilot_values()
