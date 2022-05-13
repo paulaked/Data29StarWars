@@ -16,21 +16,16 @@ class UnitTests(unittest.TestCase):
         expected = 36
         self.assertEqual(actual, expected, "Expected 36 entries in list")
 
-    # def test_replace_names(self):
-    #     test_character = db["test_character"]
-    #     test_starship = db["test_starship"]
-    #     db.test_character.insert_one({"name": "test pilot"})
-    #     db.test_starship.insert_one({"name": "starship 1", "pilot": "test pilot"})
-    #
-    #     self.replace = us3.replace_names()
-    #
-    #     actual = db.test_starship.find_one({"name":"starship 1"}, {"pilot":1})
-    #     expected = db.test_character.find_one({"name":"test pilot"}, {"_id":1})
-    #
-    #     test_character.drop()
-    #     test_starship.drop()
-    #
-    #     self.assertEqual(actual, expected, "Object id matches with that of the ")
+    def test_replace_names_type(self):
+        actual = type((db.starships.find_one({"uid": "10"}, {"_id":0, "properties.pilots": 1}))["properties"]["pilots"])
+        expected = list
+        self.assertEqual(actual, expected, "Value in pilot field after replacement should be of type list")
 
     def test_replace_names(self):
-        self.replace_names()
+        actual = db.starships.find_one({"uid": "10"}, {"_id":0, "properties.pilots": 1})["properties"]["pilots"]
+        expected = [ObjectId('627a6757f2a9f31fad6e96b5'),
+                    ObjectId('627a6763abe3f652f07c9145'),
+                    ObjectId('627a676a9319f863bb9b3005'),
+                    ObjectId('627a6770f42d90cfaa70d2fd')]
+        self.assertEqual(actual, expected, "Check object ids are as expected")
+
