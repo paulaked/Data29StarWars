@@ -1,4 +1,4 @@
-#from requesting_sw import *
+
 import pymongo
 # Connects to the 'starwars' database
 client = pymongo.MongoClient()

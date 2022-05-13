@@ -36,32 +36,34 @@ def star_ships_pilot_url(ships):
 
 
 
-# This function gets the name of the pilot and links it with the ship
+# The function below gets the name of the pilot and links it with the ship.
 def get_pilots_name(ship_dict):
     ships_pilot= {}
     for ships in ship_dict:
-        pilot_names = []
-        for pilot in range(0, len(ship_dict[ships])):
-            pilot_url = requests.get(ship_dict[ships][pilot])
-            p = pilot_url.json()
-            pilot_name = p["result"]["properties"]["name"]
-            pilot_names.append(pilot_name)
-        ships_pilot[ships] = pilot_names
+        pilot_names = [] # pilots names are stored as a list.
+        for pilot in range(0, len(ship_dict[ships])): # loops within the range of how many pilots there are for each ship.
+            pilot_url = requests.get(ship_dict[ships][pilot]) # url is requested.
+            p = pilot_url.json() # result is converted to a json format.
+            pilot_name = p["result"]["properties"]["name"] # gets the name of the pilot.
+            pilot_names.append(pilot_name) #add it to the pilot names list.
+        ships_pilot[ships] = pilot_names# the name of the ship is the key and given the value of the pilots name list.
 
-    return ships_pilot
+    return ships_pilot # returns a dictionary with the names of the ships as keys and the pilots names as the values.
 
-# this functions returns a list of all the ships. Where when the ship has a pilot the name of the pilot is stored
+
+
+# The function below returns a list of all the ships. Where when the ship has a pilot the name of the pilot is stored
 # instead of the url.
 
 def all_ships(all_ships, ships_with_pilots):
     ship_names = []
-    for names in ships_with_pilots:
+    for names in ships_with_pilots: # loops through the names of the ships that have pilots and is appended to the list.
         ship_names.append(names)
-    for i in range(0, len(all_ships)):
-        if all_ships[i]["name"] in ship_names:
-            z = ships_with_pilots.get(all_ships[i]["name"])
-            all_ships[i]["pilots"] = z
-    return all_ships
+    for i in range(0, len(all_ships)): # loops through the amount of all the ships.
+        if all_ships[i]["name"] in ship_names: # Finds if the name of the ship that have a pilot is in the list with all of the other ships.
+            z = ships_with_pilots.get(all_ships[i]["name"]) # gets the name of the pilot.
+            all_ships[i]["pilots"] = z # changes the url to the name of the pilot.
+    return all_ships # returns a list with all the star ships and has the names of the pilots instead of the url.
 
 
 
