@@ -151,5 +151,5 @@ crashlytics-build.properties
 fabric.properties
 
 # My personal test files
-mytest2.py
-mytest.py
+starwars/mytest2.py
+starwars/mytest.py
