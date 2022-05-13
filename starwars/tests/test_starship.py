@@ -108,7 +108,7 @@ class MyTestCase(unittest.TestCase):
                 'length': '34.37', 'crew': '4', 'passengers': '6', 'max_atmosphering_speed': '1050',
                 'hyperdrive_rating': '0.5', 'MGLT': '75', 'cargo_capacity': '100000',
                 'consumables': '2 months',
-                'pilots': ['Chewbacca', 'Han Solo', 'Lando Calrissian', 'Nien Nunb'],
+                'pilots': ['Han Solo'],
                 'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
                 'name': 'Millennium Falcon', 'url': 'https://www.swapi.tech/api/starships/10'}]
         for ship in self.starships.ship_info:
@@ -117,6 +117,33 @@ class MyTestCase(unittest.TestCase):
         final_count = db.starships.count_documents({})
         self.assertGreater(final_count,initial_count, 'Documents count expected to be greater than the initial count')
         return db.starships.find({})
+
+    # Tests if pilot name(s) are replaced with Character IDs for each starship
+    def test_id_replace(self):
+        self.starships.ship_info = [{'model': 'YT-1300 light freighter', 'starship_class': 'Light freighter',
+                                     'manufacturer': 'Corellian Engineering Corporation', 'cost_in_credits': '100000',
+                                     'length': '34.37', 'crew': '4', 'passengers': '6',
+                                     'max_atmosphering_speed': '1050',
+                                     'hyperdrive_rating': '0.5', 'MGLT': '75', 'cargo_capacity': '100000',
+                                     'consumables': '2 months',
+                                     'pilots': ['Han Solo'],
+                                     'created': '2020-09-17T17:55:06.604Z', 'edited': '2020-09-17T17:55:06.604Z',
+                                     'name': 'Millennium Falcon', 'url': 'https://www.swapi.tech/api/starships/10'}]
+        for ship in self.starships.ship_info:
+            if ship['pilots'] != None:
+                id_list = []
+                for name in ship['pilots']:
+                    ob = db.characters.find({'name': name}, {'_id': 1})
+                    for id in ob:
+                        id_list.append(id)
+                db.starships.update_one({'pilots': ship['pilots']},
+                                        {'$set': {'pilots': id_list}})
+                print(ship['pilots'], ': has been replaced with: ', id_list)
+        final_names = db.starships.find({},{'_id':0, 'name':1})
+
+        self.assertIsNot(id_list,list(final_names), 'Name expected to change')
+
+
 
 
 
