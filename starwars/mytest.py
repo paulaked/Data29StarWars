@@ -13,13 +13,13 @@ ss_json = starships_req.json()
 def change_pilot_values():
     starships_pilot = ''
     for i in ss_json['results']:
-        test = request_api_online(i['url']).json()['result']['properties']['pilots']
-        c_pos = 0
-        while c_pos < len(test):
-            test[c_pos] = request_api_online(test[c_pos]).json()['result']['_id']
-            c_pos += 1
+        test = request_api_online(i['url']).json()
+        for k in test:
+            for j in test['result']['properties']['pilots']:
+                print(j)
 
-        print(test)
+
+        # print(test)
 
     print(starships_pilot)
 
