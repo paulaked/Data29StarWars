@@ -1,4 +1,4 @@
-# 1. Import necessary python libraries:
+# 1. Import necessary python packages:
 import requests
 import pymongo
 import json
@@ -52,9 +52,7 @@ def get_and_replace_pilots_id():
             for n in db.characters.find({'name': i}):
                 pilots_id.append(n["_id"])
         url_content['result']['properties']['pilots'] = pilots_id
-
         starships.append(url_content)
-
     return starships
 
 
@@ -70,6 +68,5 @@ print('the collection was created successfully')
 for i in get_and_replace_pilots_id():
     db.Starship.insert_one(i)
 
-
-print("all the available starship are added successfully")
+print("The starships have been added successfully")
 
