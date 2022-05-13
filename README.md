@@ -2,18 +2,18 @@
 
 ##Aims and Objectives
 
- To extract Starship data from the Star Wars API and import this data into the MongoDB database.
-
-## Instructions
-
-The character data in your MongoDB database has been pulled from https://swapi.tech/.
-As well as 'people', the API has data on starships.
 Using Python, write code to pull data on all available starships from the API.
 The "pilots" key contains URLs pointing to the characters who pilot the starship.
 Use these to replace 'pilots' with a list of ObjectIDs from our characters collection, then insert the starships into their own collection in MongoDB.
-(Make sure you drop any existing starships collections.)
 
-You have until Friday EOD.
+## Instructions
+
+to run the code make sure the starship collection does not exist (you may need to drop/ delete on mongodb). Otherwise, this will cause problems with the code. If error still exists you may need to restart MongoDB or the environment you are running.
+
+- Next go into the "tests" file and run the "starship" code. 
+- Running the code will take a few minutes to execute completely. 
+- You will know the code has run completely when the console displays "The starships have been added successfully".
+- Check your MongoDB compass to see the collection labelled "Starship"
 
 ## Requirements
 
