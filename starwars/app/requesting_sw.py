@@ -56,8 +56,9 @@ db.drop_collection("starships")
 db.create_collection("starships")
 
 #adding the starships to the starship collection on Mongodb by iterating through each starship
+#from the results of printing the properties iterate through the list to add each spaceship to the mongodb database using db.starships.insert_one
 def add_to_mongodb():
-    for i in get_properties_name_characterID():
+    for i in properties():
        db.starships.insert_one(i)
 
 
