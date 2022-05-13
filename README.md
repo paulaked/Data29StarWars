@@ -7,16 +7,15 @@ https://trello.com/starwarsproject12
 
 ## Using this repository
 
+
 ### 1. Requirements and Pre-requisites:
 
-1.1
 
 Python 3.9 with these packages installed:
 - pymongo
 - requests
 
 A mongoDB database with a database called 'starwars'. Within 'starwars' must be the collection 'characters'. Within the collection 'characters' must be all the appropriate documents of characters collected from the Star Wars API. 
-
 
 
 ### 2. Running files
